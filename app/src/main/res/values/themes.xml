@@ -3,6 +3,8 @@
     <style name="Base.Theme.Internship45d" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">@font/averia_libre</item>
+        <item name="colorPrimary">#BB6D85</item>
     </style>
 
     <style name="Theme.Internship45d" parent="Base.Theme.Internship45d" />

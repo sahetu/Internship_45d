@@ -1,42 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/custom_background"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_marginTop="10dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@drawable/login_banner"
-        android:text="Login Form" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:inputType="textEmailAddress"
-        android:id="@+id/main_email"
-        android:hint="Email Id"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_below="@id/image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
-    <EditText
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:inputType="textPassword"
-        android:id="@+id/main_password"
-        android:hint="Password"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_below="@id/main_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/login_banner"
+            android:text="Login Form" />
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/main_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:drawableLeft="@drawable/email"
+            android:drawablePadding="10dp"
+            android:hint="Email Id"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/main_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/password"
+            android:drawablePadding="10dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:weightSum="2">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:text="Login"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Signup"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
