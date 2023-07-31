@@ -17,51 +17,49 @@
         <ImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:src="@drawable/login_banner"
             android:text="Login Form" />
 
         <EditText
             android:id="@+id/main_email"
+            style="@style/edit_18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:drawableLeft="@drawable/email"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/_10sdp"
             android:hint="Email Id"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/main_password"
+            style="@style/edit_18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:drawableLeft="@drawable/password"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/_10sdp"
             android:hint="Password"
-            android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:inputType="textPassword" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:weightSum="2">
 
             <Button
+                android:id="@+id/main_login"
+                style="@style/button_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/white"
-                android:text="Login"
-                android:textColor="@color/black" />
+                android:text="Login" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -69,7 +67,7 @@
                 android:layout_weight="1"
                 android:text="Signup"
                 android:textAlignment="center"
-                android:textColor="@color/white" />
+                style="@style/text_18"/>
 
         </LinearLayout>
 

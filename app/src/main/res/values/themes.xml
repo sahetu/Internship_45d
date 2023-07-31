@@ -8,4 +8,23 @@
     </style>
 
     <style name="Theme.Internship45d" parent="Base.Theme.Internship45d" />
+
+    <style name="edit_18" parent="Widget.AppCompat.EditText" >
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">@dimen/_18sdp</item>
+    </style>
+
+    <style name="button_18" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/black</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:background">@drawable/custom_button</item>
+        <item name="android:textSize">@dimen/_18sdp</item>
+    </style>
+
+    <style name="text_18" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/_18sdp</item>
+    </style>
+
 </resources>
