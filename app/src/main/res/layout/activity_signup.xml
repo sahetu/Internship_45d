@@ -13,17 +13,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_250sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/login_banner"
-            android:text="Login Form" />
-
         <EditText
-            android:id="@+id/main_email"
+            android:id="@+id/signup_name"
             style="@style/edit_18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,11 +22,36 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:drawableLeft="@drawable/email"
             android:drawablePadding="@dimen/_10sdp"
+            android:hint="Name"
+            android:inputType="textPersonName" />
+        
+        <EditText
+            android:id="@+id/signup_email"
+            style="@style/edit_18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:drawableLeft="@drawable/email"
+            android:drawablePadding="@dimen/_10sdp"
             android:hint="Email Id"
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/main_password"
+            android:maxLength="10"
+            android:id="@+id/signup_contact"
+            style="@style/edit_18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:drawableLeft="@drawable/email"
+            android:drawablePadding="@dimen/_10sdp"
+            android:hint="Contact No."
+            android:inputType="phone" />
+        
+        <EditText
+            android:id="@+id/signup_password"
             style="@style/edit_18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,6 +62,18 @@
             android:hint="Password"
             android:inputType="textPassword" />
 
+        <EditText
+            android:id="@+id/signup_confirm_password"
+            style="@style/edit_18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:drawableLeft="@drawable/password"
+            android:drawablePadding="@dimen/_10sdp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,19 +82,19 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/main_login"
+                android:id="@+id/signup_signup"
                 style="@style/button_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Login" />
+                android:text="Signup" />
 
             <TextView
-                android:id="@+id/main_signup"
+                android:id="@+id/signup_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Signup"
+                android:text="Login"
                 android:textAlignment="center"
                 style="@style/text_18"/>
 
