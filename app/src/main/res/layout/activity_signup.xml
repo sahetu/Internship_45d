@@ -24,7 +24,7 @@
             android:drawablePadding="@dimen/_10sdp"
             android:hint="Name"
             android:inputType="textPersonName" />
-        
+
         <EditText
             android:id="@+id/signup_email"
             style="@style/edit_18"
@@ -38,7 +38,6 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:maxLength="10"
             android:id="@+id/signup_contact"
             style="@style/edit_18"
             android:layout_width="match_parent"
@@ -48,8 +47,9 @@
             android:drawableLeft="@drawable/email"
             android:drawablePadding="@dimen/_10sdp"
             android:hint="Contact No."
-            android:inputType="phone" />
-        
+            android:inputType="phone"
+            android:maxLength="10" />
+
         <EditText
             android:id="@+id/signup_password"
             style="@style/edit_18"
@@ -74,6 +74,39 @@
             android:hint="Confirm Password"
             android:inputType="textPassword" />
 
+        <RadioGroup
+            android:id="@+id/signup_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/signup_male"
+                style="@style/radio_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/signup_female"
+                style="@style/radio_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Female" />
+
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/signup_city"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,12 +124,12 @@
 
             <TextView
                 android:id="@+id/signup_login"
+                style="@style/text_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Login"
-                android:textAlignment="center"
-                style="@style/text_18"/>
+                android:textAlignment="center" />
 
         </LinearLayout>
 
