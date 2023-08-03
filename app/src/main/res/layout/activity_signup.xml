@@ -107,6 +107,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <EditText
+            android:editable="false"
+            android:id="@+id/signup_dob"
+            style="@style/edit_18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:drawableLeft="@drawable/calendar"
+            android:drawablePadding="@dimen/_10sdp"
+            android:hint="Date Of Birth"
+            android:inputType="textPersonName" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
