@@ -3,6 +3,8 @@ package com.internship;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,11 +41,19 @@ public class SignupActivity extends AppCompatActivity {
 
     Calendar calendar;
     String sCity = "";
+    String sGender;
+
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        db = openOrCreateDatabase("Internship",MODE_PRIVATE,null);
+        String tableQuery = "CREATE TABLE IF NOT EXISTS USERS(USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(100),EMAIL VARCHAR(100),CONTACT INT(10),PASSWORD VARCHAR(20),GENDER VARCHAR(6),CITY VARCHAR(50),DOB VARCHAR(10))";
+        db.execSQL(tableQuery);
+
         login = findViewById(R.id.signup_login);
 
         name = findViewById(R.id.signup_name);
@@ -142,7 +152,8 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 RadioButton radioButton = findViewById(i); //R.id.signup_male,R.id.signup_female;
-                new CommonMethod(SignupActivity.this,radioButton.getText().toString());
+                sGender = radioButton.getText().toString();
+                new CommonMethod(SignupActivity.this,sGender);
             }
         });
 
@@ -189,16 +200,19 @@ public class SignupActivity extends AppCompatActivity {
                     dob.setError("Please Select Date Of Birth");
                 }
                 else {
-                    System.out.println("Signup Successfully");
-                    //Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_LONG).show();
-                    new CommonMethod(SignupActivity.this, "Signup Successfully");
-                    //Snackbar.make(view, "Login Successfully", Snackbar.LENGTH_SHORT).show();
-                    new CommonMethod(view, "Signup Successfully");
 
-                    /*Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);*/
-                    //new CommonMethod(SignupActivity.this, HomeActivity.class);
-                    onBackPressed();
+                    String selectQuery = "SELECT * FROM USERS WHERE EMAIL='"+email.getText().toString()+"' OR CONTACT='"+contact.getText().toString()+"'";
+                    Cursor cursor = db.rawQuery(selectQuery,null);
+                    if(cursor.getCount()>0){
+                        new CommonMethod(SignupActivity.this, "Email Id/Contact No. Already Exists");
+                    }
+                    else{
+                        String insertQuery = "INSERT INTO USERS VALUES(NULL,'"+name.getText().toString()+"','"+email.getText().toString()+"','"+contact.getText().toString()+"','"+password.getText().toString()+"','"+sGender+"','"+sCity+"','"+dob.getText().toString()+"')";
+                        db.execSQL(insertQuery);
+                        new CommonMethod(SignupActivity.this, "Signup Successfully");
+                        new CommonMethod(view, "Signup Successfully");
+                        onBackPressed();
+                    }
                 }
             }
         });
