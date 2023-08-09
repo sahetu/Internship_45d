@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/custom_background"
     tools:context=".DashboardActivity">
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
@@ -17,5 +18,11 @@
         app:mbn_rippleColor="#2f424242"
         app:mbn_selectedIconColor="#1C1C1C"
         app:mbn_shadowColor="#1f212121" />
+
+    <RelativeLayout
+        android:id="@+id/dashboard_relative"
+        android:layout_above="@id/dashboard_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

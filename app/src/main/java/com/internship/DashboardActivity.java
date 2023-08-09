@@ -1,6 +1,7 @@
 package com.internship;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
@@ -29,9 +30,13 @@ public class DashboardActivity extends AppCompatActivity {
                 // your codes
                 if(item.getId()==HOME_MENU){
                     mBottomNavigation.show(HOME_MENU,true);
+                    FragmentManager manager = getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.dashboard_relative,new HomeFragment()).commit();
                 }
                 else if(item.getId()==PROFILE_MENU){
                     mBottomNavigation.show(PROFILE_MENU,true);
+                    FragmentManager manager = getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.dashboard_relative,new ProfileFragment()).commit();
                 }
                 else{
 
@@ -54,6 +59,8 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         mBottomNavigation.show(HOME_MENU,true);
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.dashboard_relative,new HomeFragment()).commit();
 
     }
 }
