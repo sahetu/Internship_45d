@@ -16,8 +16,15 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
 
-    String[] nameArray = {"Person 1","Person 2","Person 3"};
-    int[] imageArray = {R.drawable.batch1_icon,R.drawable.brainybeam_logo,R.drawable.login_banner};
+    String[] nameArray = {"Bread","Cloth","Makeup Kit"};
+    int[] imageArray = {R.drawable.bread,R.drawable.cloth,R.drawable.makup_kit};
+
+    String[] priceArray = {"50","2000","4000"};
+    String[] descArray = {
+            "Bread, baked food product made of flour or meal that is moistened, kneaded, and sometimes fermented. A major food since prehistoric times, it has been made in various forms using a variety of ingredients and methods throughout the world.",
+            "Piece of cloth - a separate part consisting of fabric. piece of material. bib - top part of an apron; covering the chest. chamois cloth - a piece of chamois used for washing windows or cars. dishcloth, dishrag - a cloth for washing dishes.",
+            "What does a makeup kit consist of? Ideally, a complete makeup kit consists of a moisturizer, skin tint (like foundation or tinted primer), concealer, lip product, bronzer, blush, and mascara"
+    };
 
     public HomeFragment() {
         // Required empty public constructor
@@ -39,7 +46,7 @@ public class HomeFragment extends Fragment {
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        ProductAdapter adapter = new ProductAdapter(getActivity(),nameArray,imageArray);
+        ProductAdapter adapter = new ProductAdapter(getActivity(),nameArray,imageArray,priceArray,descArray);
         recyclerView.setAdapter(adapter);
 
         return view;

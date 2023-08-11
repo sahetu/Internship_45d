@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Internship45d"
         tools:targetApi="31">
         <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity
@@ -35,7 +38,7 @@
             android:label="@string/title_activity_home" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
