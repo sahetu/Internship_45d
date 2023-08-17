@@ -18,6 +18,7 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
 
+    String[] idArray = {"1","2","3","4","5"};
     String[] nameArray = {"Bread","Cloth","Makeup Kit","Bread","Cloth","Makeup Kit"};
     int[] imageArray = {R.drawable.bread,R.drawable.cloth,R.drawable.makup_kit,R.drawable.bread,R.drawable.cloth,R.drawable.makup_kit};
 
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
 
-        ProductAdapter adapter = new ProductAdapter(getActivity(),nameArray,imageArray,priceArray,descArray);
+        ProductAdapter adapter = new ProductAdapter(getActivity(),nameArray,imageArray,priceArray,descArray,idArray);
         recyclerView.setAdapter(adapter);
 
         categoryRecyclerview = view.findViewById(R.id.home_recyclerview_category);

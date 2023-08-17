@@ -14,18 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyHolder> {
 
     Context context;
+    String[] idArray;
     String[] nameArray;
     String[] priceArray;
     String[] descArray;
     int[] imageArray;
     SharedPreferences sp;
 
-    public ProductAdapter(Context context, String[] nameArray, int[] imageArray, String[] priceArray, String[] descArray) {
+    public ProductAdapter(Context context, String[] nameArray, int[] imageArray, String[] priceArray, String[] descArray, String[] idArray) {
         this.context = context;
         this.imageArray = imageArray;
         this.nameArray = nameArray;
         this.priceArray = priceArray;
         this.descArray = descArray;
+        this.idArray = idArray;
         sp = context.getSharedPreferences(ConstantSp.PREF,Context.MODE_PRIVATE);
     }
 
@@ -59,6 +61,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sp.edit().putString(ConstantSp.PRODUCT_ID,idArray[position]).commit();
                 sp.edit().putString(ConstantSp.PRODUCT_NAME,nameArray[position]).commit();
                 sp.edit().putString(ConstantSp.PRODUCT_IMAGE,String.valueOf(imageArray[position])).commit();
                 sp.edit().putString(ConstantSp.PRODUCT_PRICE,priceArray[position]).commit();

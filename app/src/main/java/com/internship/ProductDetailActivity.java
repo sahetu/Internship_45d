@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,14 +25,25 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
     TextView name, price, desc;
     ImageView imageView;
 
-    Button buyNow;
+    Button buyNow,addCart,addWishlist;
 
     SharedPreferences sp;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
+
+        db = openOrCreateDatabase("Internship",MODE_PRIVATE,null);
+        String tableQuery = "CREATE TABLE IF NOT EXISTS USERS(USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(100),EMAIL VARCHAR(100),CONTACT INT(10),PASSWORD VARCHAR(20),GENDER VARCHAR(6),CITY VARCHAR(50),DOB VARCHAR(10))";
+        db.execSQL(tableQuery);
+
+        String cartTableQuery = "CREATE TABLE IF NOT EXISTS CART(CARTID INTEGER PRIMARY KEY AUTOINCREMENT,ORDERID INTEGER(100),USERID INTEGER(100),PRODUCTID INTEGER(100),PRODUCTNAME VARCHAR(100),PRODUCTIMAGE VARCHAR(100),PRODUCTDESCRIPTION TEXT,PRODUCTPRICE VARCHAR(20),PRODUCTQTY VARCHAR(20),TOTALPRICE VARCHAR(50))";
+        db.execSQL(cartTableQuery);
+
+        String wishlistTableQuery = "CREATE TABLE IF NOT EXISTS WISHLIST(WISHLISTID INTEGER PRIMARY KEY AUTOINCREMENT,USERID INTEGER(100),PRODUCTID INTEGER(100),PRODUCTNAME VARCHAR(100),PRODUCTIMAGE VARCHAR(100),PRODUCTDESCRIPTION TEXT,PRODUCTPRICE VARCHAR(20))";
+        db.execSQL(wishlistTableQuery);
 
         sp = getSharedPreferences(ConstantSp.PREF, MODE_PRIVATE);
 
@@ -39,6 +52,8 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
         price = findViewById(R.id.product_detail_price);
         desc = findViewById(R.id.product_detail_desc);
 
+        addWishlist = findViewById(R.id.product_detail_add_wishlist);
+        addCart = findViewById(R.id.product_detail_add_cart);
         buyNow = findViewById(R.id.product_detail_buy_now);
 
         name.setText(sp.getString(ConstantSp.PRODUCT_NAME, ""));
@@ -54,6 +69,40 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
             @Override
             public void onClick(View view) {
                 startPayment();
+            }
+        });
+
+        addCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String selectQuery = "SELECT * FROM CART WHERE ORDERID='0' AND USERID='"+sp.getString(ConstantSp.ID,"")+"' AND PRODUCTID='"+sp.getString(ConstantSp.PRODUCT_ID,"")+"'";
+                Cursor cursor = db.rawQuery(selectQuery,null);
+                if(cursor.getCount()>0){
+                    new CommonMethod(ProductDetailActivity.this,"Product Already Added In Cart");
+                }
+                else {
+                    int iQty = 3;
+                    int iTotalPrice = Integer.parseInt(sp.getString(ConstantSp.PRODUCT_PRICE, "")) * iQty;
+                    String insertQuery = "INSERT INTO CART VALUES(NULL,'0','" + sp.getString(ConstantSp.ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_NAME, "") + "','" + sp.getString(ConstantSp.PRODUCT_IMAGE, "") + "','" + sp.getString(ConstantSp.PRODUCT_DESCRIPTION, "") + "','" + sp.getString(ConstantSp.PRODUCT_PRICE, "") + "','" + iQty + "','" + iTotalPrice + "')";
+                    db.execSQL(insertQuery);
+                    new CommonMethod(ProductDetailActivity.this, "Product Added In Cart Successfully");
+                }
+            }
+        });
+
+        addWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String selectQuery = "SELECT * FROM WISHLIST WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"' AND PRODUCTID='"+sp.getString(ConstantSp.PRODUCT_ID,"")+"'";
+                Cursor cursor = db.rawQuery(selectQuery,null);
+                if(cursor.getCount()>0){
+                    new CommonMethod(ProductDetailActivity.this,"Product Already Added In Wishlist");
+                }
+                else {
+                    String insertQuery = "INSERT INTO WISHLIST VALUES(NULL,'" + sp.getString(ConstantSp.ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_NAME, "") + "','" + sp.getString(ConstantSp.PRODUCT_IMAGE, "") + "','" + sp.getString(ConstantSp.PRODUCT_DESCRIPTION, "") + "','" + sp.getString(ConstantSp.PRODUCT_PRICE, "") + "')";
+                    db.execSQL(insertQuery);
+                    new CommonMethod(ProductDetailActivity.this, "Product Added In Wishlist Successfully");
+                }
             }
         });
 
