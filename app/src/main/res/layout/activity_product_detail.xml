@@ -53,8 +53,26 @@
             android:layout_height="wrap_content"/>
 
         <Button
+            android:id="@+id/product_detail_remove_wishlist"
+            android:text="Remove From Wishlist"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            style="@style/button_18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
             android:id="@+id/product_detail_add_cart"
             android:text="Add To Cart"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            style="@style/button_18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/product_detail_remove_cart"
+            android:text="Remove From Cart"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginHorizontal="@dimen/_20sdp"
             style="@style/button_18"

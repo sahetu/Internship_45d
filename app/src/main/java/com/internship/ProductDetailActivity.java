@@ -25,7 +25,7 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
     TextView name, price, desc;
     ImageView imageView;
 
-    Button buyNow,addCart,addWishlist;
+    Button buyNow,addCart,removeCart,addWishlist,removeWishlist;
 
     SharedPreferences sp;
     SQLiteDatabase db;
@@ -53,7 +53,11 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
         desc = findViewById(R.id.product_detail_desc);
 
         addWishlist = findViewById(R.id.product_detail_add_wishlist);
+        removeWishlist = findViewById(R.id.product_detail_remove_wishlist);
+
         addCart = findViewById(R.id.product_detail_add_cart);
+        removeCart = findViewById(R.id.product_detail_remove_cart);
+
         buyNow = findViewById(R.id.product_detail_buy_now);
 
         name.setText(sp.getString(ConstantSp.PRODUCT_NAME, ""));
@@ -72,6 +76,17 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
             }
         });
 
+        String selectCartQuery = "SELECT * FROM CART WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"' AND PRODUCTID='"+sp.getString(ConstantSp.PRODUCT_ID,"")+"'";
+        Cursor cursorCart = db.rawQuery(selectCartQuery,null);
+        if(cursorCart.getCount()>0){
+            removeCart.setVisibility(View.VISIBLE);
+            addCart.setVisibility(View.GONE);
+        }
+        else {
+            removeCart.setVisibility(View.GONE);
+            addCart.setVisibility(View.VISIBLE);
+        }
+
         addCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +101,43 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
                     String insertQuery = "INSERT INTO CART VALUES(NULL,'0','" + sp.getString(ConstantSp.ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_NAME, "") + "','" + sp.getString(ConstantSp.PRODUCT_IMAGE, "") + "','" + sp.getString(ConstantSp.PRODUCT_DESCRIPTION, "") + "','" + sp.getString(ConstantSp.PRODUCT_PRICE, "") + "','" + iQty + "','" + iTotalPrice + "')";
                     db.execSQL(insertQuery);
                     new CommonMethod(ProductDetailActivity.this, "Product Added In Cart Successfully");
+
+                    addCart.setVisibility(View.GONE);
+                    removeCart.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        removeCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String deleteQuery = "DELETE FROM CART WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"' AND PRODUCTID='"+sp.getString(ConstantSp.PRODUCT_ID,"")+"'";
+                db.execSQL(deleteQuery);
+                new CommonMethod(ProductDetailActivity.this,"Product Remove From Cart Successfully");
+                removeCart.setVisibility(View.GONE);
+                addCart.setVisibility(View.VISIBLE);
+            }
+        });
+
+        String selectQuery = "SELECT * FROM WISHLIST WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"' AND PRODUCTID='"+sp.getString(ConstantSp.PRODUCT_ID,"")+"'";
+        Cursor cursor = db.rawQuery(selectQuery,null);
+        if(cursor.getCount()>0){
+            removeWishlist.setVisibility(View.VISIBLE);
+            addWishlist.setVisibility(View.GONE);
+        }
+        else {
+            removeWishlist.setVisibility(View.GONE);
+            addWishlist.setVisibility(View.VISIBLE);
+        }
+
+        removeWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String deleteQuery = "DELETE FROM WISHLIST WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"' AND PRODUCTID='"+sp.getString(ConstantSp.PRODUCT_ID,"")+"'";
+                db.execSQL(deleteQuery);
+                new CommonMethod(ProductDetailActivity.this,"Product Remove From Wishlist Successfully");
+                removeWishlist.setVisibility(View.GONE);
+                addWishlist.setVisibility(View.VISIBLE);
             }
         });
 
@@ -102,6 +153,10 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
                     String insertQuery = "INSERT INTO WISHLIST VALUES(NULL,'" + sp.getString(ConstantSp.ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_NAME, "") + "','" + sp.getString(ConstantSp.PRODUCT_IMAGE, "") + "','" + sp.getString(ConstantSp.PRODUCT_DESCRIPTION, "") + "','" + sp.getString(ConstantSp.PRODUCT_PRICE, "") + "')";
                     db.execSQL(insertQuery);
                     new CommonMethod(ProductDetailActivity.this, "Product Added In Wishlist Successfully");
+
+                    addWishlist.setVisibility(View.GONE);
+                    removeWishlist.setVisibility(View.VISIBLE);
+
                 }
             }
         });
