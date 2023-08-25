@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Internship45d"
         tools:targetApi="31">
         <activity
+            android:name=".ShippingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProductDetailActivity"
             android:exported="false" />
         <activity

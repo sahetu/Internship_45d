@@ -96,7 +96,7 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
                     new CommonMethod(ProductDetailActivity.this,"Product Already Added In Cart");
                 }
                 else {
-                    int iQty = 3;
+                    int iQty = 1;
                     int iTotalPrice = Integer.parseInt(sp.getString(ConstantSp.PRODUCT_PRICE, "")) * iQty;
                     String insertQuery = "INSERT INTO CART VALUES(NULL,'0','" + sp.getString(ConstantSp.ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_ID, "") + "','" + sp.getString(ConstantSp.PRODUCT_NAME, "") + "','" + sp.getString(ConstantSp.PRODUCT_IMAGE, "") + "','" + sp.getString(ConstantSp.PRODUCT_DESCRIPTION, "") + "','" + sp.getString(ConstantSp.PRODUCT_PRICE, "") + "','" + iQty + "','" + iTotalPrice + "')";
                     db.execSQL(insertQuery);

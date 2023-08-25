@@ -57,6 +57,13 @@ public class CartFragment extends Fragment {
 
         checkout = view.findViewById(R.id.cart_checkout);
 
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new CommonMethod(getActivity(),ShippingActivity.class);
+            }
+        });
+
         //Display Data In List
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -85,6 +92,21 @@ public class CartFragment extends Fragment {
 
             checkout.setText("Checkout "+ConstantSp.PRICE_SYMBOL+iCartTotal);
 
+            if(iCartTotal>0){
+                checkout.setVisibility(View.VISIBLE);
+            }
+            else{
+                checkout.setVisibility(View.GONE);
+            }
+
+        }
+        else{
+            if(iCartTotal>0){
+                checkout.setVisibility(View.VISIBLE);
+            }
+            else{
+                checkout.setVisibility(View.GONE);
+            }
         }
 
         return view;
