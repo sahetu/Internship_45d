@@ -69,7 +69,7 @@ public class CartFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
 
-        String selectQuery = "SELECT * FROM CART WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"'";
+        String selectQuery = "SELECT * FROM CART WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"' AND ORDERID='0'";
         Cursor cursor = db.rawQuery(selectQuery,null);
         if(cursor.getCount()>0){
             iCartTotal=0;

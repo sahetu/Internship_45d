@@ -76,7 +76,7 @@ public class ProductDetailActivity extends AppCompatActivity implements PaymentR
             }
         });
 
-        String selectCartQuery = "SELECT * FROM CART WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"' AND PRODUCTID='"+sp.getString(ConstantSp.PRODUCT_ID,"")+"'";
+        String selectCartQuery = "SELECT * FROM CART WHERE USERID='"+sp.getString(ConstantSp.ID,"")+"' AND PRODUCTID='"+sp.getString(ConstantSp.PRODUCT_ID,"")+"' AND ORDERID='0'";
         Cursor cursorCart = db.rawQuery(selectCartQuery,null);
         if(cursorCart.getCount()>0){
             removeCart.setVisibility(View.VISIBLE);
